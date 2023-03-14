@@ -1,35 +1,42 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/about">About</router-link> |
-      <router-link to="/">Dashboard</router-link> |
-      <router-link to="/products">Products</router-link> |
-      <router-link to="/clients">Clients</router-link>
-
-    </nav>
+    <Menu v-if="this.$router.currentRoute.name != 'Login'"></Menu>
     <router-view/>
   </div>
 </template>
 
+<script>
+import Menu from '@/components/menu/Menu.vue'
+
+export default {
+  components:{
+    Menu: Menu
+  }
+}
+</script>
+
 <style>
+:root{
+  --primary-color: #42b983;
+  --secondary-color: #2c3e50;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
+.container {
+  margin-top:35px;
 }
-
-nav a {
+body {
+  margin: 0;
+  padding: 0;
+}
+.page-title{
+  font-size: 600;
   font-weight: bold;
-  color: #2c3e50;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

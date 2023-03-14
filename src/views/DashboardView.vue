@@ -1,18 +1,17 @@
 <template>
-    <div class="dashboard">
-        <h1>{{pageTitle}}</h1>
-    </div>    
+    <div class="container">
+        <div class="row">
+            <div class="class col-sm-12">
+                <h2 class="page-title">Dashboard</h2>
+                <hr>
+            </div>
+        </div>
+    </div>           
 </template>
 <script>
-//import { defineComponent } from '@vue/composition-api'
 
 export default {
-    name: 'DashboardView',
-    data(){
-        return {
-            pageTitle: "Dashboard view"
-        }
-    }
+    name: 'DashboardView'
 }
 </script>
 
