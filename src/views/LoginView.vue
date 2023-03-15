@@ -11,13 +11,13 @@
               type="password">
             </TextInput>
             <br>
-            <FormButton
+            <Button
               type="button"
               value="Sign in"
               iconClass="fa fa-sign-in"
               :callback="signIn"
               >
-            </FormButton>
+            </Button>
         </form>
       </div>
     </div>
@@ -25,12 +25,12 @@
   
 <script> 
   import TextInput from '@/components/inputs/TextInput.vue';
-  import FormButton from '@/components/buttons/FormButton.vue';
+  import Button from '@/components/buttons/Button.vue';
   export default {
     name: 'LoginView',
     components : {
       TextInput,
-      FormButton
+      Button
     },
     methods: {
       signIn(){
@@ -56,6 +56,7 @@
     text-align: center;
     color: var(--primary-color);
     font-size:50px;
+    font-weight:bold;
   }
   form {
     display: flex;

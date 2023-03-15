@@ -12,7 +12,7 @@
 <script>
 
 export default {
-    name:"FormButton",
+    name:"ButtonComponent",
     props: {
         value: {type: String, require},
         type: {type:String, default: 'button'},

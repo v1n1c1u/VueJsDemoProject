@@ -13,7 +13,8 @@
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Register Date</th>
+                                <th>Quantity in Stock</th>
+                                <th>Registration Date</th>
                             </tr>
                         </thead>
                     </table>
@@ -21,18 +22,43 @@
             </div>
         <div class="row">
             <div class="col-sm-12">
-                <FormButton type="button" value="Add Product" iconClass="fa fa-plus"></FormButton>
+                <Button type="button" value="Add Product" iconClass="fa fa-plus"></Button>
             </div>
         </div>
     </div>    
 </template>
 <script>
-import FormButton from '@/components/buttons/FormButton.vue'
+import Button from '@/components/buttons/Button.vue'
+import productService from '@/api/product-service';
+import Product from '@/models/Product';
 
 export default {
     name: 'ProductControlView',
     components:{
-        FormButton
+        Button
+    },
+    data(){
+        return {
+            products: []
+        };
+    },
+    methods:{
+        findAllProducts(){
+            productService.findAll()
+            .then(response => {
+                console.log(response);
+                this.products = response.data.map(p => new Product(p));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+    },
+    beforeCreate(){
+
+    },
+    mounted(){
+        this.findAllProducts();
     }
 }
 </script>

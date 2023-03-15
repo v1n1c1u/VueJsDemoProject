@@ -13,7 +13,7 @@
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>E-mail</th>
-                                <th>Register Date</th>
+                                <th>Registration Date</th>
                             </tr>
                         </thead>
                     </table>
@@ -21,18 +21,29 @@
             </div>
         <div class="row">
             <div class="col-sm-12">
-                <FormButton type="button" value="Add Client" iconClass="fa fa-plus"></FormButton>
+                <Button type="button" value="Add Client" iconClass="fa fa-plus"></Button>
             </div>
         </div>
     </div>        
 </template>
 <script>
-import FormButton from '@/components/buttons/FormButton.vue'
+import Button from '@/components/buttons/Button.vue'
 
 export default {
     name: 'ClientControlView',
     components:{
-        FormButton
+        Button
+    },
+    data(){
+        return {};
+    },
+    methods:{
+        findAllClients(){
+            console.log("I was called");
+        }
+    },
+    mounted(){
+        this.findAllClients();
     }
 }
 </script>

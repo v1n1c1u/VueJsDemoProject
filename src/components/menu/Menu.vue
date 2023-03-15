@@ -47,6 +47,9 @@
     #logo-link:hover{
         background-color: #2c3e50;
     }
+    #logout-link{
+        color:white;
+    }
 </style>
 <script>
 export default {
