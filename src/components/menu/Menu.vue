@@ -1,40 +1,50 @@
 <template>
     <nav id="menu">
-      <div id="logo-div"><img id="menu-logo" src="@/assets/logo.png"/></div>
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/products">Products</router-link>
-      <router-link to="/clients">Clients</router-link>
-      <router-link id="logout-link" to="/login">Logout</router-link>
+      <div id="page-links-div">
+        <div id="logo-div"><img id="menu-logo" src="@/assets/logo.png"/></div>
+        <router-link to="/">Dashboard</router-link>
+        <router-link to="/products">Products</router-link>
+        <router-link to="/clients">Clients</router-link>
+      </div>
+      <div id="logout-div">
+        <router-link id="logout-link" to="/login">
+            <div>
+                <i class="fa fa-sign-out"></i>
+                Logout
+            </div>
+        </router-link>
+      </div>
     </nav>
 </template>
 <style scoped>
-    #menu {
+    #menu, #page-links-div, #logout-div {
         padding:  0 30px 0 10px;
         height: 60px;
         overflow: hidden;
         background-color: #2c3e50;
         display: flex;
-
+        flex-direction: row;
+        justify-content: space-between;
     }
 
-    #menu a, #logo-div {
+    a, #logo-div, #logout-div {
         font-weight: bold;
         color: #42b983;
         text-decoration: none;
-        padding: 0px 10px 0px 10px;
+        width:100px;
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
     }
-    #menu a:hover{
+    a:hover{
         background-color: #3e5266;
     }
-    #logout-link{
-        justify-self: end;
-        float:right;
-    }
 
+    #logout-div{
+        padding: 0;
+    }
     #menu a.router-link-exact-active {
         background-color: #4e6275;
         color:#73d1a7;
@@ -45,10 +55,7 @@
         margin-right: 30px;
     }
     #logo-link:hover{
-        background-color: #2c3e50;
-    }
-    #logout-link{
-        color:white;
+        background-color: inherit;
     }
 </style>
 <script>
