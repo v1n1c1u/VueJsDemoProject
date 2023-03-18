@@ -5,6 +5,8 @@
         <router-link to="/">Dashboard</router-link>
         <router-link to="/products">Products</router-link>
         <router-link to="/clients">Clients</router-link>
+        <router-link to="/about">About</router-link>
+
       </div>
       <div id="logout-div">
         <router-link id="logout-link" to="/login">

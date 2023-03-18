@@ -1,6 +1,6 @@
 <template>
     <div id="empty-table-message">
-        <span>{{message}}</span>
+        <span><i class="fa fa-frown-o" aria-hidden="true"></i>&nbsp;{{message}}</span>
     </div>
 </template>
 <script>
@@ -24,5 +24,12 @@ export default {
     justify-content: center;
     text-align: center;
     width:100%;
+}
+span{
+    display: flex;
+    justify-content: center;
+}
+i {
+    font-size: 50px;
 }
 </style>

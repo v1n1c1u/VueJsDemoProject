@@ -4,10 +4,14 @@ const routes = [
       name: 'Login',
       title: 'Login',
       meta: {requiredAuth: false},
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/',
+      name: 'Dashboard',
+      title: 'Dashboard',
+      meta: {requiredAuth: false},
+      component: () => import('../views/DashboardView.vue')
     },
     {
       path: '/products',
@@ -24,11 +28,25 @@ const routes = [
       component: () => import('../views/ClientControlView.vue')
     },
     {
-      path: '/',
-      name: 'Dashboard',
-      title: 'Dashboard',
+      path: '/about',
+      name: 'About',
+      title: 'About',
       meta: {requiredAuth: false},
-      component: () => import('../views/DashboardView.vue')
+      component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/products/new',
+      name: 'NewProduct',
+      title: 'Add Product',
+      meta: {requiredAuth: false},
+      component: () => import('../views/Product.vue')
+    },
+    {
+      path: '/products/edit',
+      name: 'EditProduct',
+      title: 'Edit Product',
+      meta: {requiredAuth: false},
+      component: () => import('../views/Product.vue')
     }
   ];
 

@@ -42,7 +42,6 @@ export default {
     },
     methods:{
         findAllClients(){
-            console.log("I was called");
         }
     },
     mounted(){
@@ -57,5 +56,8 @@ export default {
     }
     #client-table-row{
         margin-bottom: 10px;
+    }
+    .centered-content, th{
+        text-align: center;
     }
 </style>
