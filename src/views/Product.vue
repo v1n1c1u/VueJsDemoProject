@@ -22,7 +22,7 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" v-model="product.price" class="form-control" id="price">
+                    <input type="text" v-model="product.price" class="form-control" id="price" placeholder="Ex.: 000.000,00" value="">
                 </div>
             </div>
             <div class="col-sm-3">
@@ -56,6 +56,7 @@
 import Button from '@/components/buttons/Button.vue';
 import Product from '@/models/Product';
 import productService from '@/api/product-service';
+import dateConverter from '@/utils/dateConverter';
 
 export default {
     name: 'NewProduct',
@@ -88,19 +89,42 @@ export default {
         updateProduct(){
             if(this.product.validModelForUpdating()){
                 productService.update(this.product)
-                .then(response => {alert("Success!");console.log(response);})
+                .then(response => {
+                    this.$swal({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: "Product was edited!"
+                    });
+                    console.log(response);
+                })
                 .catch(error => console.log(error));
             }else{
-                alert("Product name and id are required!");
+                this.$swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Product name and id are required!"
+                });
             }
         },
         registerProduct(){
             if(this.product.validModel()){
+                this.product.registrationDate = dateConverter.applyISOMask(this.product.registrationDate);
                 productService.register(this.product)
-                .then(response => {alert("Success");console.log(response);})
-                .catch(error => console.log(error));
+                .then(response => {
+                    this.$swal({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: "Product was registered!"
+                    });
+                    console.log(response);
+                })
+                .catch(error => console.log(error))
             }else{
-                alert("Product name and price are required!");
+                this.$swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Product name and price are required!"
+                });
             }
         }
     }

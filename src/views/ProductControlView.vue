@@ -22,7 +22,7 @@
                         <tr v-for="product in products" :key="product.id">
                             <td class="centered-content">{{product.id}}</td>
                             <td>{{product.name}}</td>
-                            <td class="centered-content">$ {{product.price | currencyFilter}}</td>
+                            <td class="centered-content">{{product.price | currencyFilter}}</td>
                             <td class="centered-content">{{product.quantityInStock}}</td>
                             <td class="centered-content">{{ product.registrationDate | dateFilter }}</td>
                             <td class="centered-content">
@@ -31,7 +31,7 @@
                                         <i @click="editProduct(product)" class="fa fa-edit" title="Edit product"></i>
                                     </button>
                                     <button class="invisible-button">
-                                        <i @click="deleteProduct(product)" class="fa fa-trash" title="Delete product"></i>
+                                        <i @click="showConfirmDialog(product)" class="fa fa-trash" title="Delete product"></i>
                                     </button>
                                 </div>
                             </td>
@@ -74,7 +74,7 @@ export default {
             return dateConverter.applyISOMask(date);
         },
         currencyFilter(price){
-            return currencyConverter.applyDollarMask(price);
+            return currencyConverter.applyDollarMaskWithPrefix(price);
         }
     },
     data(){
@@ -96,20 +96,50 @@ export default {
             this.$router.push({name:"EditProduct", params: {id:product.id}});
         },
         deleteProduct(product){
-            console.log("clicked");
             productService.deleteById(product)
             .then(response => {
-                alert("Deleted successfully!");
+                let index = this.products.findIndex(p => p.id == product.id);
+                this.products.splice(index,1)
                 console.log(response);
-                window.location.reload();
+                this.$swal.fire({
+                    icon: 'success',
+                    title: `Success!`,
+                    text: 'Product deleted successfully!',
+                    animate: true
+                });
             })
             .catch(error =>{
-                alert("Unable to delete product!");
+                this.$swal.fire({
+                    icon: 'error',
+                    title: `Oops!`,
+                    text: 'Unable to delete product!',
+                    animate: true
+                });
                 console.log(error);
             });
         },
         addProduct(){
             this.$router.push({name:"NewProduct"});
+        },
+        showConfirmDialog(product){
+            this.$swal.fire({
+                icon: 'warning',
+                title:'Caution!',
+                text: `Do you really want to delete "${product.name}"?`,
+                animate: true,
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                customClass: {
+                    actions: 'my-actions',
+                    cancelButton: 'order-1 right-gap',
+                    confirmButton: 'order-2'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.deleteProduct(product);
+                }
+            })
         }
     },
     beforeCreate(){
@@ -142,8 +172,18 @@ export default {
     #actions-options-div i:hover {
         color:var(--primary-color);
     }
+
     .invisible-button{
         border-style: none;
         background-color:inherit
+    }
+    .my-actions { 
+        margin: 0 2em;
+        width:100%;
+    }
+    .order-1 { order: 1; }
+    .order-2 { order: 2; }
+    .right-gap {
+        margin-right: auto;
     }
 </style>
