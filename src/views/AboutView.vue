@@ -8,7 +8,7 @@
                     &#128075; Hello there!
                 </div>
                 <p>
-                    This website is a demonstration of my web development
+                    This website is a demonstration of my frontend web development
                     skills with Vue. It simulates a small company's system
                     for controlling clients and products.
                     <br><br>

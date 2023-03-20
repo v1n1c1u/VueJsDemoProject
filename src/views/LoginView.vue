@@ -3,7 +3,7 @@
       <div class="login-box">
         <form>
             <h1>Login</h1>
-            <span>{{ errorMessage }}</span>
+            <span id="error-message">{{ errorMessage }}</span>
             <TextInput
               label="E-mail"
               v-model="user.email">
@@ -46,18 +46,28 @@
     },
     methods: {
       signIn(){
-        if(this.user.validModelForLogin){
+        if(this.user.validModelForLogin()){
           this.errorMessage = "";
+          if(userService.login(this.user.email, this.user.password)){
+            this.$router.push({name:'About'});
+          }else{
+            this.errorMessage = "Incorrect e-mail or password!";
+          }
+
+          /*
           userService.login(this.user.email, this.user.password)
           .then(response => {
             console.log(response);
-            this.$router.push({name:'Dashboard'});
+            this.$router.push({name:'About'});
           })
           .catch(error => {
             console.log(error);
           })
+          */
+          
+          //this.$router.push({name:'About'});
         }else{
-          this.errorMessage = "Email and password are required!";
+          this.errorMessage = "E-mail and password are required!";
         }
       }
     }
@@ -85,7 +95,14 @@
   form {
     display: flex;
     flex-direction: column;
-    height: 350px;
+    min-height: 350px;
+  }
+  #error-message{
+    color:rgb(243, 64, 64);
+    text-align: center;
+    font-style: italic;
+    margin-top:5px;
+    margin-bottom: 5px;
   }
 
 </style>

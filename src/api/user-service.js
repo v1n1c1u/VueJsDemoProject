@@ -1,10 +1,13 @@
 import api from "./api";
 function login(email, password){
+    /*
     return new Promise((resolve, reject)=>{
             return api.post(`/login`,{email, password})
             .then(response => resolve(response))
             .catch(error=>reject(error));
     });
+    */
+   return !!(email === 'admin@admin.com' && password === 'admin');
 }
 function logout(){
     return new Promise((resolve, reject)=>{

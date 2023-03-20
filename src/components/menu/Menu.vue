@@ -2,14 +2,13 @@
     <nav id="menu">
       <div id="page-links-div">
         <div id="logo-div"><img id="menu-logo" src="@/assets/logo.png"/></div>
-        <router-link to="/">Dashboard</router-link>
+        <router-link to="/about">About</router-link>
         <router-link to="/products">Products</router-link>
         <router-link to="/clients">Clients</router-link>
-        <router-link to="/about">About</router-link>
 
       </div>
       <div id="logout-div">
-        <router-link id="logout-link" to="/login">
+        <router-link id="logout-link" to="/">
             <div>
                 <i class="fa fa-sign-out"></i>
                 Logout
