@@ -3,12 +3,15 @@
       <div class="login-box">
         <form>
             <h1>Login</h1>
+            <span>{{ errorMessage }}</span>
             <TextInput
-              label="E-mail">
+              label="E-mail"
+              v-model="user.email">
             </TextInput>
             <TextInput
               label="Password"
-              type="password">
+              type="password"
+              v-model="user.password">
             </TextInput>
             <br>
             <Button
@@ -26,15 +29,36 @@
 <script> 
   import TextInput from '@/components/inputs/TextInput.vue';
   import Button from '@/components/buttons/Button.vue';
+  import User from '@/models/User';
+  import userService from '@/api/user-service';
+
   export default {
     name: 'LoginView',
     components : {
       TextInput,
       Button
     },
+    data(){
+      return {
+        user: new User(),
+        errorMessage: ''
+      }
+    },
     methods: {
       signIn(){
-        this.$router.push({name:'Dashboard'});
+        if(this.user.validModelForLogin){
+          this.errorMessage = "";
+          userService.login(this.user.email, this.user.password)
+          .then(response => {
+            console.log(response);
+            this.$router.push({name:'Dashboard'});
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        }else{
+          this.errorMessage = "Email and password are required!";
+        }
       }
     }
   }

@@ -125,7 +125,7 @@ export default {
             this.$swal.fire({
                 icon: 'warning',
                 title:'Caution!',
-                text: `Do you really want to delete "${product.name}"?`,
+                text: `Do you really want to delete "${product.name}"? It cannot be undone!`,
                 animate: true,
                 showDenyButton: false,
                 showCancelButton: true,
