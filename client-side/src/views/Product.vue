@@ -22,7 +22,22 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="text" v-model="product.price" class="form-control" id="price" placeholder="Ex.: 000.000,00" value="">
+                    <CurrencyInput 
+                        name="price"
+                        class="form-control"
+                        v-model="product.price"
+                        :options="{ 
+                            currency: 'USD',
+                            locale: 'en-US',
+                            currencyDisplay: 'symbol',
+                            valueRange: {
+                                min: 0,
+                                max: 1000000
+                            },
+                            precision: 2,
+                            autoDecimalDigits: false}"
+                        >
+                    </CurrencyInput>
                 </div>
             </div>
             <div class="col-sm-3">
@@ -57,6 +72,7 @@ import Button from '@/components/buttons/Button.vue';
 import Product from '@/models/Product';
 import productService from '@/api/product-service';
 import dateConverter from '@/utils/dateConverter';
+import CurrencyInput from '@/components/inputs/CurrencyInput.vue';
 
 export default {
     name: 'NewProduct',
@@ -67,7 +83,8 @@ export default {
         }
     },
     components:{
-        Button
+        Button,
+        CurrencyInput
     },
     mounted(){
         let id = this.$route.params.id;
@@ -131,8 +148,14 @@ export default {
 }
 </script>
 <style scoped>
+    input {
+      border: 1px solid #ddd;
+      border-radius: 2px 2px 2px 2px;
+      outline: none;
+      box-shadow: none;
+    }
     input:focus{
-        box-shadow: 1px 0px 5px var(--primary-color) ;
+        border-color:var(--primary-color);
     }
     #save-button-div{
         display: flex;

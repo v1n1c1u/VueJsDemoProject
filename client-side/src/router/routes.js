@@ -40,6 +40,20 @@ const routes = [
       title: 'Edit Product',
       meta: {requiredAuth: false},
       component: () => import('../views/Product.vue')
+    },
+    {
+      path: '/clients/new',
+      name: 'NewClient',
+      title: 'Add Client',
+      meta: {requiredAuth: false},
+      component: () => import('../views/Client.vue')
+    },
+    {
+      path: '/clients/edit',
+      name: 'EditClient',
+      title: 'Edit Client',
+      meta: {requiredAuth: false},
+      component: () => import('../views/Client.vue')
     }
   ];
 

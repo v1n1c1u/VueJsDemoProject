@@ -6,4 +6,12 @@ export default class Client {
         this.email = obj.email;
         this.registrationDate = obj.registrationDate;
     }
+
+    validModel(){
+        return !!(this.name && this.email);
+    }
+
+    validModelForUpdating(){
+        return !!(this.id && this.name);
+    }
 }
